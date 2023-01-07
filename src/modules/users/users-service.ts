@@ -1,5 +1,8 @@
 import DbUtils from "../../libs/mongodb/db.utils";
-import usersRepository from "./users.repository";
+import { HttpCodes } from "../../utils/constants";
+import { ResponseUtils } from "../../utils/response-utils";
+import usersRepository from "./users-repository";
+import express from "express";
 
 class UsersService {
 
@@ -14,11 +17,19 @@ class UsersService {
 
     readMany = async (
         limit: number,
-        page: number
+        page: number,
+        res: express.Response,
     ): Promise<any> => {
         const cursor = usersRepository.readMany(limit, page);
-        const docs = await DbUtils.streamCursorData(cursor);
-        return docs;
+        let docs = await DbUtils.streamCursorData(cursor);
+        if(!docs) {
+            docs = [];
+        }
+        return ResponseUtils.respond(
+            HttpCodes.HTTP_200,
+            docs,
+            res,
+        );
     };
 
     readOne = async (

@@ -1,5 +1,5 @@
 import { Collection, CollectionInfo, CreateCollectionOptions, Document, IndexSpecification, ListCollectionsCursor, ListCollectionsOptions, ListDatabasesResult } from "mongodb";
-import { ErrorUtils } from "../../utils/error.utils";
+import { ErrorUtils } from "../../utils/error-utils";
 import { DbClientInstance } from "./db.client";
 
 class DbControlOps {

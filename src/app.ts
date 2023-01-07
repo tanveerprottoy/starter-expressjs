@@ -1,29 +1,27 @@
 import express from "express";
 import cors from "cors";
-import { graphqlHTTP } from "express-graphql";
 import { DbClientInstance } from "./libs/mongodb";
-import { Constants } from "./utils/constants";
-import { GraphQLSchema } from "graphql";
-import { rootQuery } from "./root-components/root.query";
-import { rootMutation } from "./root-components/root.mutation";
+import { GlobalValues } from "./utils/constants";
+import { initUserRouter } from "./modules/users/users-router";
 
 // init db
-DbClientInstance.init(Constants.DB_HOST, Constants.DB_NAME);
+DbClientInstance.init(GlobalValues.DB_HOST, GlobalValues.DB_NAME);
 
-const app = express();
-const port = 8080;
+const app: express.Application = express();
+const port: number = GlobalValues.PORT;
 
 // enabling cors for all requests by using cors middleware
 app.use(cors());
 
-app.use("/api", graphqlHTTP({
-    schema: new GraphQLSchema({
-        query: rootQuery,
-        mutation: rootMutation
-    }),
-    // rootValue: { hello: () => 'Hello world!' },
-    graphiql: true,
+// parse requests of content-type: application/json
+// parses incoming requests with JSON payloads
+app.use(express.json());
+// parse requests of application/x-www-form-urlencoded
+app.use(express.urlencoded({
+    extended: true
 }));
+
+app.use(GlobalValues.API + GlobalValues.V1 + '/users', initUserRouter(app));
 
 app.listen(port, () => {
     console.log(`server started at http://localhost:${port}`);
