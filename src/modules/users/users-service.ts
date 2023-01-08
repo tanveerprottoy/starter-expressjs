@@ -44,6 +44,12 @@ class UsersService {
     ): Promise<any> => {
         return await usersRepository.update(id, data);
     };
+
+    delete = async (
+        id: string
+    ): Promise<any> => {
+        return await usersRepository.delete(id);
+    };
 }
 
 export default new UsersService;

@@ -1,7 +1,7 @@
 import express from "express";
-import usersController from "./users-controller";
+import usersController from "./contents-controller";
 
-export function initUserRouter(): express.Router {
+export function initContentRouter(): express.Router {
     const router = express.Router();
     router.get('/', usersController.readMany);
     router.get('/:id', usersController.readOne);

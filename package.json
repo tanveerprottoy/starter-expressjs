@@ -7,7 +7,7 @@
         "test": "jest --watchAll --verbose",
         "build": "npx tsc",
         "start": "node dist/app.js",
-        "dev": " npx tsc && nodemon dist/app.js"
+        "dev": " npx tsc && node dist/app.js"
     },
     "author": "",
     "license": "ISC",

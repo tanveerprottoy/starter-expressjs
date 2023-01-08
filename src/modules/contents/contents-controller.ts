@@ -1,13 +1,13 @@
 import express from "express";
-import usersService from "./users-service";
+import contentsService from "./contents-service";
 
-class UsersController {
+class ContentsController {
 
     create = async (
         req: express.Request,
         res: express.Response,
     ): Promise<express.Response> => {
-        return await usersService.create({});
+        return await contentsService.create({});
     };
 
     readMany = async (
@@ -16,7 +16,7 @@ class UsersController {
     ): Promise<express.Response> => {
         const limit = parseInt(req.query.limit.toString());
         const page = parseInt(req.query.page.toString());
-        return await usersService.readMany(limit, page, res);
+        return await contentsService.readMany(limit, page, res);
     };
 
     readOne = async (
@@ -24,7 +24,7 @@ class UsersController {
         res: express.Response,
     ): Promise<express.Response> => {
         const id = req.query.id.toString();
-        return await usersService.readOne(id);
+        return await contentsService.readOne(id);
     };
 
     update = async (
@@ -32,7 +32,7 @@ class UsersController {
         res: express.Response,
     ): Promise<express.Response> => {
         const id = req.query.id.toString();
-        return await usersService.update(id, {});
+        return await contentsService.update(id, {});
     };
 
     delete = async (
@@ -40,8 +40,8 @@ class UsersController {
         res: express.Response,
     ): Promise<express.Response> => {
         const id = req.query.id.toString();
-        return await usersService.delete(id);
+        return await contentsService.delete(id);
     };
 }
 
-export default new UsersController;
+export default new ContentsController;

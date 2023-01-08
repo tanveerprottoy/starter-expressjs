@@ -1,13 +1,14 @@
 import { DbDataOpsInstance } from "../../libs/mongodb";
+import { Repository } from "../../libs/mongodb/repository";
 
-class UsersRepository {
+class UsersRepository implements Repository {
     private collectionName = "users";
 
-    create = async (data: any): Promise<any> => {
+    async create(doc: any): Promise<any> {
         try {
             const result = DbDataOpsInstance.insertOne<any>(
                 this.collectionName,
-                data
+                doc
             );
             return result;
         }
@@ -17,10 +18,10 @@ class UsersRepository {
         }
     }
 
-    readMany = (
+    readMany(
         limit: number,
         page: number
-    ): any => {
+    ): any {
         try {
             return DbDataOpsInstance.find<any>(
                 this.collectionName,
@@ -37,7 +38,7 @@ class UsersRepository {
         }
     }
 
-    readOne = async (id: string): Promise<any> => {
+    async readOne(id: string): Promise<any> {
         try {
             return await DbDataOpsInstance.findOne<any>(
                 this.collectionName,
@@ -52,14 +53,31 @@ class UsersRepository {
         }
     }
 
-    update = async (id: string, data: any): Promise<any> => {
+    async update(id: string, update: any): Promise<any> {
         try {
             const result = DbDataOpsInstance.updateOne<any>(
                 this.collectionName,
                 {
                     _id: id
                 },
-                data
+                update
+            );
+            return result;
+        }
+        catch(e) {
+            console.error(e);
+            return e;
+        }
+    }
+
+    async delete(id: string): Promise<any> {
+        try {
+            const result = DbDataOpsInstance.deleteOne<any>(
+                this.collectionName,
+                {
+                    _id: id
+                },
+                null
             );
             return result;
         }

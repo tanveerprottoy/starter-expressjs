@@ -3,6 +3,7 @@ import cors from "cors";
 import { DbClientInstance } from "./libs/mongodb";
 import { GlobalValues } from "./utils/constants";
 import { initUserRouter } from "./modules/users/users-router";
+import { initContentRouter } from "./modules/contents/contents-router";
 
 // init db
 DbClientInstance.init(GlobalValues.DB_HOST, GlobalValues.DB_NAME);
@@ -21,7 +22,8 @@ app.use(express.urlencoded({
     extended: true
 }));
 
-app.use(GlobalValues.API + GlobalValues.V1 + '/users', initUserRouter(app));
+app.use(GlobalValues.API + GlobalValues.V1 + '/users', initUserRouter());
+app.use(GlobalValues.API + GlobalValues.V1 + '/contents', initContentRouter());
 
 app.listen(port, () => {
     console.log(`server started at http://localhost:${port}`);

@@ -1,13 +1,14 @@
 import { DbDataOpsInstance } from "../../libs/mongodb";
+import { Repository } from "../../libs/mongodb/repository";
 
-class ContentsRepository {
+class ContentsRepository implements Repository {
     private collectionName = "contents";
 
-    create = async (data: any): Promise<any> => {
+    create = async (doc: any): Promise<any> => {
         try {
             const result = DbDataOpsInstance.insertOne<any>(
                 this.collectionName,
-                data
+                doc
             );
             return result;
         }
@@ -19,19 +20,12 @@ class ContentsRepository {
 
     readMany = (
         limit: number,
-        page: number,
-        userId?: string
+        page: number
     ): any => {
         try {
-            let filter = null;
-            if(userId) {
-                filter = {
-                    userId: userId
-                };
-            }
             return DbDataOpsInstance.find<any>(
                 this.collectionName,
-                filter,
+                null,
                 {
                     limit: limit,
                     skip: page * limit - limit
@@ -52,6 +46,40 @@ class ContentsRepository {
                     id: id
                 }
             );
+        }
+        catch(e) {
+            console.error(e);
+            return e;
+        }
+    }
+
+    update = async (id: string, update: any): Promise<any> => {
+        try {
+            const result = DbDataOpsInstance.updateOne<any>(
+                this.collectionName,
+                {
+                    _id: id
+                },
+                update
+            );
+            return result;
+        }
+        catch(e) {
+            console.error(e);
+            return e;
+        }
+    }
+
+    delete = async (id: string): Promise<any> => {
+        try {
+            const result = DbDataOpsInstance.deleteOne<any>(
+                this.collectionName,
+                {
+                    _id: id
+                },
+                null
+            );
+            return result;
         }
         catch(e) {
             console.error(e);
