@@ -4,10 +4,10 @@
     "description": "",
     "main": "app.js",
     "scripts": {
-        "test": "jest --watchAll --verbose",
         "build": "npx tsc",
         "start": "node dist/app.js",
-        "dev": " npx tsc && node dist/app.js"
+        "dev": " npx tsc && node dist/app.js",
+        "test": "jest --watchAll --verbose"
     },
     "author": "",
     "license": "ISC",
