@@ -12,4 +12,4 @@ export const GlobalValues = {
 
 export const HttpCodes = {
     HTTP_200: 200,
-}
+} as const;
