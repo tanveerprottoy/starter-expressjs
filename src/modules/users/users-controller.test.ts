@@ -1,6 +1,5 @@
 import { describe, expect, test } from '@jest/globals';
 import { agent as request } from "supertest";
-import { app } from "../../app";
 import usersService from "./users-service";
 
 /* describe("UserController", () => {
