@@ -1,8 +1,8 @@
-import DbUtils from "../../libs/mongodb/db.utils";
 import { HttpCodes } from "../../utils/constants";
 import { ResponseUtils } from "../../utils/response-utils";
 import usersRepository from "./users-repository";
 import express from "express";
+import DbUtils from "../../libs/mongodb/db-utils";
 
 class UsersService {
 
@@ -50,6 +50,10 @@ class UsersService {
     ): Promise<any> => {
         return await usersRepository.delete(id);
     };
+
+    multiply(x: number, y: number): number {
+        return x * y;
+    }
 }
 
 export default new UsersService;

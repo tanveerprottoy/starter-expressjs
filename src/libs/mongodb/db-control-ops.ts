@@ -1,6 +1,6 @@
 import { Collection, CollectionInfo, CreateCollectionOptions, Document, IndexSpecification, ListCollectionsCursor, ListCollectionsOptions, ListDatabasesResult } from "mongodb";
 import { ErrorUtils } from "../../utils/error-utils";
-import { DbClientInstance } from "./db.client";
+import { DbClientInstance } from "./db-client";
 
 class DbControlOps {
     private static instance: DbControlOps;

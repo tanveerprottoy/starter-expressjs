@@ -8,7 +8,7 @@ import { initContentRouter } from "./modules/contents/contents-router";
 // init db
 DbClientInstance.init(GlobalValues.DB_HOST, GlobalValues.DB_NAME);
 
-const app: express.Application = express();
+export const app: express.Application = express();
 const port: number = GlobalValues.PORT;
 
 // enabling cors for all requests by using cors middleware
