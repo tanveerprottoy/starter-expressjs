@@ -1,16 +1,20 @@
-import { beforeAll, describe, expect, it, test } from '@jest/globals';
+import { afterAll, beforeAll, describe, expect, it, test } from '@jest/globals';
 import { agent as request } from "supertest";
 import { GlobalValues } from "../../utils/constants";
 import usersService from "./users-service";
 import { createServer } from "../../server";
 import express from "express";
+import { DbClientInstance } from "../../libs/mongodb";
 
 let app: express.Application;
 
 describe("UserService", () => {
-    beforeAll(() => {
+    beforeAll(async () => {
         // start the server
-        app = createServer();
+        app = await createServer();
+    });
+    afterAll(() => {
+        DbClientInstance.close();
     });
 
     /* describe("user create", () => {

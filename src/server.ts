@@ -3,8 +3,11 @@ import cors from "cors";
 import { GlobalValues } from "./utils/constants";
 import { initUserRouter } from "./modules/users/users-router";
 import { initContentRouter } from "./modules/contents/contents-router";
+import { DbClientInstance } from "./libs/mongodb";
 
-export function createServer() {
+export async function createServer() {
+    // init db
+    await DbClientInstance.init(GlobalValues.DB_HOST, GlobalValues.DB_NAME);
     const app: express.Application = express();
     const port: number = GlobalValues.PORT;
 
