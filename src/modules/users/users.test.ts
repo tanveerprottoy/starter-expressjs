@@ -16,12 +16,25 @@ describe("UserService", () => {
     afterAll(() => {
         DbClientInstance.close();
     });
+
+    describe("user create", () => {
+        describe("when passed a valid user an entity is created", () => {
+            // api test
+            it("should respond with a 201 status code", async () => {
+                const response = await request(app).post(`${GlobalValues.API}${GlobalValues.V1}/users`).send({
+                    name: "name",
+                    address: "address"
+                });
+                expect(response.statusCode).toBe(201);
+            });
+        });
+    });
     describe("user get", () => {
         describe("when no user is found, should return 404", () => {
             // api test
             it("should respond with a 404 status code", async () => {
                 const id = "id";
-                const response = await usersService.readMany(10, 1, id, app.);
+                const response = await request(app).get(`${GlobalValues.API}${GlobalValues.V1}/users/${id}`);
                 expect(response.statusCode).toBe(404);
             });
         });
