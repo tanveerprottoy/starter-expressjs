@@ -1,4 +1,4 @@
-import { HttpCodes } from "../../utils/constants";
+import { GlobalValues, HttpCodes } from "../../utils/constants";
 import { ResponseUtils } from "../../utils/response-utils";
 import usersRepository from "./users-repository";
 import express from "express";
@@ -33,9 +33,24 @@ class UsersService {
     };
 
     readOne = async (
-        id: string
+        id: string,
+        res: express.Response
     ): Promise<any> => {
-        return await usersRepository.readOne(id);
+        const data = await usersRepository.readOne(id);
+        if(!data) {
+            return ResponseUtils.respond(
+                HttpCodes.HTTP_404,
+                {
+                    message: GlobalValues.NOT_FOUND
+                },
+                res,
+            );
+        }
+        return ResponseUtils.respond(
+            HttpCodes.HTTP_200,
+            data,
+            res,
+        );
     };
 
     update = async (

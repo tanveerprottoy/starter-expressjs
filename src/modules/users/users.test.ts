@@ -8,7 +8,7 @@ import { DbClientInstance } from "../../libs/mongodb";
 
 let app: express.Application;
 
-describe("UserService", () => {
+describe("UserTest", () => {
     beforeAll(async () => {
         // start the server
         app = await createServer();
