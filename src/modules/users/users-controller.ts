@@ -24,7 +24,7 @@ class UsersController {
         res: express.Response,
     ): Promise<express.Response> => {
         const id = req.query.id.toString();
-        return await usersService.readOne(id);
+        return await usersService.readOne(id, res);
     };
 
     update = async (
