@@ -14,7 +14,7 @@ export class ResponseUtils {
         code: number,
         payload: any,
         res: express.Response,
-    ): any {
-        res.status(code).send(payload);
+    ): express.Response {
+        return res.status(code).send(payload);
     }
 }

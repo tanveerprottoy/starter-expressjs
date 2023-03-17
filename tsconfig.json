@@ -8,6 +8,16 @@
         "esModuleInterop": true,
         "skipLibCheck": true, /* Skip type checking all .d.ts files. */
         "strictNullChecks": false,
-        "forceConsistentCasingInFileNames": true /* Ensure that casing is correct in imports. */
-    }
+        "paths": {
+            "test/*": [
+                "./test/*"
+            ]
+        }
+    },
+    "include": [
+        "src/**/*"
+    ],
+    "exclude": [
+        "src/**/*.test.ts"
+    ]
 }

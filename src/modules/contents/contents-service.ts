@@ -1,8 +1,8 @@
-import DbUtils from "../../libs/mongodb/db.utils";
 import { HttpCodes } from "../../utils/constants";
 import { ResponseUtils } from "../../utils/response-utils";
 import contentsRepository from "./contents-repository";
 import express from "express";
+import DbUtils from "../../libs/mongodb/db-utils";
 
 class ContentsService {
 
