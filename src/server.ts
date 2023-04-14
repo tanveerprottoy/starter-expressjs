@@ -26,6 +26,7 @@ export async function createServer() {
     }));
 
     app.use(GlobalValues.API + GlobalValues.V1 + "/users", initUserRouter());
+
     app.use(GlobalValues.API + GlobalValues.V1 + "/contents", initContentRouter());
 
     app.listen(port, () => {
