@@ -1,5 +1,6 @@
 import express from "express";
 import cors from "cors";
+import helmet from "helmet";
 import { GlobalValues } from "./utils/constants";
 import { initUserRouter } from "./modules/users/users-router";
 import { initContentRouter } from "./modules/contents/contents-router";
@@ -13,6 +14,8 @@ export async function createServer() {
 
     // enabling cors for all requests by using cors middleware
     app.use(cors());
+
+    app.use(helmet());
 
     // parse requests of content-type: application/json
     // parses incoming requests with JSON payloads
