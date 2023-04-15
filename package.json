@@ -2,7 +2,7 @@
     "name": "starter-expressjs",
     "version": "1.0.0",
     "description": "",
-    "main": "app.js",
+    "main": "src/app.ts",
     "scripts": {
         "build": "npx tsc",
         "start": "npx tsc && node dist/app.js",
