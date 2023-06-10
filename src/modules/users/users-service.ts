@@ -6,20 +6,20 @@ import DbUtils from "../../libs/mongodb/db-utils";
 
 class UsersService {
 
-    create = async (
+    async create(
         data: any
-    ): Promise<any> => {
+    ): Promise<any> {
         const result = await usersRepository.create(data);
         console.log(result);
         console.log(result.insertedId.toString());
         return result.insertedId.toString();
     };
 
-    readMany = async (
+    async readMany(
         limit: number,
         page: number,
         res: express.Response,
-    ): Promise<any> => {
+    ): Promise<any> {
         const cursor = usersRepository.readMany(limit, page);
         let docs = await DbUtils.streamCursorData(cursor);
         if(!docs) {
@@ -32,10 +32,10 @@ class UsersService {
         );
     };
 
-    readOne = async (
+    async readOne(
         id: string,
         res: express.Response
-    ): Promise<any> => {
+    ): Promise<any> {
         const data = await usersRepository.readOne(id);
         if(!data) {
             return ResponseUtils.respond(
@@ -53,16 +53,16 @@ class UsersService {
         );
     };
 
-    update = async (
+    async update(
         id: string,
         data: any
-    ): Promise<any> => {
+    ): Promise<any> {
         return await usersRepository.update(id, data);
     };
 
-    delete = async (
+    async delete(
         id: string
-    ): Promise<any> => {
+    ): Promise<any> {
         return await usersRepository.delete(id);
     };
 

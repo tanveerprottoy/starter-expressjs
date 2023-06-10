@@ -4,7 +4,7 @@ import { Repository } from "../../libs/mongodb/repository";
 class ContentsRepository implements Repository {
     private collectionName = "contents";
 
-    create = async (doc: any): Promise<any> => {
+    async create(doc: any): Promise<any> {
         try {
             const result = DbDataOpsInstance.insertOne<any>(
                 this.collectionName,
@@ -18,10 +18,10 @@ class ContentsRepository implements Repository {
         }
     }
 
-    readMany = (
+    readMany(
         limit: number,
         page: number
-    ): any => {
+    ): any {
         try {
             return DbDataOpsInstance.find<any>(
                 this.collectionName,
@@ -38,7 +38,7 @@ class ContentsRepository implements Repository {
         }
     }
 
-    readOne = async (id: string): Promise<any> => {
+    async readOne(id: string): Promise<any> {
         try {
             return await DbDataOpsInstance.findOne<any>(
                 this.collectionName,
@@ -53,7 +53,7 @@ class ContentsRepository implements Repository {
         }
     }
 
-    update = async (id: string, update: any): Promise<any> => {
+    async update(id: string, update: any): Promise<any> {
         try {
             const result = DbDataOpsInstance.updateOne<any>(
                 this.collectionName,
@@ -70,7 +70,7 @@ class ContentsRepository implements Repository {
         }
     }
 
-    delete = async (id: string): Promise<any> => {
+    async delete(id: string): Promise<any> {
         try {
             const result = DbDataOpsInstance.deleteOne<any>(
                 this.collectionName,
